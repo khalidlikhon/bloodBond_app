@@ -67,33 +67,40 @@ ul li::before {
     font-weight:bold;
 }
 
-/* Team Section - Black Overlay Version */
+/* Team Section - Larger Cards on Desktop */
 .team-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;                /* More breathing room between cards */
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
 }
+
 .team-member {
     position: relative;
-    width: 250px;
-    height: 350px;
-    border-radius: 15px;
+    width: 450px;             /* Larger width on desktop */
+    height: 320px;            /* Taller height for bigger image */
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.4s ease;
+    background: #fff;
 }
+
 .team-member:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
 }
+
+
 .team-member img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease, filter 0.5s ease;
+    transition: filter 0.5s ease; 
 }
+
 .team-member .overlay {
     position: absolute;
     bottom: 0;
@@ -101,52 +108,67 @@ ul li::before {
     right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
     color: #fff;
-    padding: 25px 20px 20px;
-    transition: transform 0.4s ease;
+    padding: 40px 30px 30px;   /* More padding for better text spacing */
+    transition: transform 0.5s ease;
     transform: translateY(100%);
 }
+
 .team-member:hover .overlay,
 .team-member.active .overlay {
     transform: translateY(0);
 }
+
 .team-member:hover img,
 .team-member.active img {
-    transform: scale(1.1);
-    filter: brightness(0.6);
+    filter: brightness(0.6);  
 }
+
 .team-member .name {
-    font-size: 1.4em;
+    font-size: 1.1em;         /* Bigger name */
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-top: 0;
+    
 }
+
 .team-member .role {
-    font-size: 1.05em;
+    font-size: 0.95em;
     opacity: 0.95;
     margin-bottom: 15px;
     font-weight: 500;
 }
+
 .team-member .description {
-    font-size: 0.95em;
+    font-size: 0.75em;
     line-height: 1.6;
 }
 
-/* Mobile adjustments */
+/* Mobile View - Full width, optimized */
 @media (max-width: 768px) {
+    .team-grid {
+        gap: 30px;
+    }
     .team-member {
-        width: 90%;
-        height: 420px;
+        width: 92%;
+        height: 500px;        /* Even taller on mobile for easy reading */
+        border-radius: 18px;
     }
     .team-member .overlay {
-        transform: translateY(calc(100% - 80px)); /* Shows name + role initially */
+        transform: translateY(calc(100% - 110px)); /* Shows name + role initially */
+        padding: 50px 30px 30px;
     }
     .team-member.active .overlay {
         transform: translateY(0);
     }
     .team-member .name {
-        font-size: 1.6em;
+        font-size: 2em;
     }
     .team-member .role {
-        font-size: 1.2em;
+        font-size: 1.4em;
+        margin-bottom: 25px;
+    }
+    .team-member .description {
+        font-size: 1.1em;
+        line-height: 1.8;
     }
 }
 
@@ -204,7 +226,7 @@ footer {
                 <div class="name">Khalid Likhon</div>
                 <div class="role">Head of Research & Development</div>
                 <div class="description">
-                    He is the visionary leader behind BloodBond, guiding the platform from concept to full execution. Personally led concept design, research planning, system architecture, and full-stack development.
+                    He is the visionary leader behind BloodBond, guiding the platform from concept to full execution. Personally led concept design, research planning, system architecture, and full-stack development. Supported by his team, coordinated efforts and personally handled critical tasks to deliver a reliable, user-friendly, highly responsive platform.
                 </div>
             </div>
         </div>
@@ -216,7 +238,7 @@ footer {
                 <div class="name">Hadi Uz Zaman</div>
                 <div class="role">Asst. Frontend Developer</div>
                 <div class="description">
-                    Provided full support in frontend development, assisting in implementing the app's interface and interactive elements under guidance of the lead developer.
+                    Provided full support in frontend development, assisting in implementing the app's interface and interactive elements. Helped translate design concepts into functional features while ensuring smooth performance and responsiveness under guidance of the lead developer.
                 </div>
             </div>
         </div>
@@ -228,7 +250,7 @@ footer {
                 <div class="name">Muntasir Fahim</div>
                 <div class="role">UI/UX Designer</div>
                 <div class="description">
-                    Responsible for designing the app's user experience, creating an intuitive, visually appealing, and engaging interface while maintaining consistency with BloodBond's branding.
+                    Responsible for designing the app's user experience, creating an intuitive, visually appealing, and engaging interface. Ensures the platform is easy to navigate and enjoyable for users while maintaining consistency with BloodBond's branding and accessibility standards.
                 </div>
             </div>
         </div>
