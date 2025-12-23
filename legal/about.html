@@ -67,79 +67,151 @@ ul li::before {
     font-weight:bold;
 }
 
-/* Team cards */
+/* Team Section - Larger Cards on Desktop */
 .team-grid {
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-    margin-top:20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 50px;
 }
-.team-card {
-    width:220px;
-    border-radius:12px;
-    overflow:hidden;
-    cursor:pointer;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+
+.team-member {
     position: relative;
-}
-.team-card:hover { transform:translateY(-5px); }
-.team-card img {
-    width:100%;
-    height:250px;
-    object-fit:cover;
-    filter: brightness(0.8) blur(1px);
-    transition: all 0.3s ease;
-}
-.team-card:hover img { filter: brightness(1) blur(0); }
-
-/* Name bar with icon & rule */
-.team-card .name-bar {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-    color:#fff;
-    padding:8px 12px;
-    display:flex;
-    flex-direction:column;
-}
-.team-card .name-bar .top-row {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-.team-card .name-bar .name-text {
-    text-align:left;
-    font-weight:500;
-    display:inline-block;
-}
-.team-card .name-bar .icon {
-    font-size:16px;
-    transition: transform 0.3s;
-    cursor:pointer;
-}
-.team-card.expanded .name-bar .icon {
-    transform: rotate(180deg);
-}
-/* Rule only under name text */
-.team-card .name-bar hr {
-    border:0;
-    border-top:1px solid rgba(255,255,255,0.7);
-    width:100%;
-    margin-top:4px;
+    width: 450px;             /* Large on desktop */
+    height: 320px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    transition: all 0.4s ease;
+    background: #fff;
 }
 
-/* Details */
-.team-card .details {
-    display:none;
-    padding:15px;
-    background:#ffe5e0;
-    color:#333;
-    font-size:0.9em;
-    border-radius:0 0 12px 12px;
-    animation: fadeInUp 0.3s ease forwards;
+.team-member:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+}
+
+.team-member img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease;
+}
+
+.team-member .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent);
+    color: #fff;
+    padding: 40px 30px 30px;
+    transition: transform 0.5s ease;
+    transform: translateY(100%);
+}
+
+.team-member:hover .overlay,
+.team-member.active .overlay {
+    transform: translateY(0);
+}
+
+.team-member:hover img,
+.team-member.active img {
+    filter: brightness(0.6);
+}
+
+.team-member .name {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+.team-member .role {
+    font-size: 0.95em;
+    opacity: 0.95;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.team-member .description {
+    font-size: 0.75em;
+    line-height: 1.6;
+}
+
+/* Mobile View - Half overlay visible by default */
+@media (max-width: 768px) {
+    .team-grid {
+        gap: 30px;
+    }
+    .team-member {
+        width: 92%;
+        height: 520px;          /* Slightly taller for better proportion */
+        border-radius: 18px;
+    }
+
+    /* Default state: overlay covers ~50% of the card (half the image) */
+    .team-member .overlay {
+        transform: translateY(50%);   /* Shows exactly half the overlay */
+        padding: 40px 30px 40px;
+    }
+
+    /* When clicked: full overlay slides up */
+    .team-member.active .overlay {
+        transform: translateY(0);
+    }
+
+    /* Larger, readable text when overlay is visible */
+    .team-member .name {
+        font-size: 1.2em;
+    }
+    .team-member .role {
+        font-size: 0.95em;
+        margin-bottom: 15px;
+    }
+    .team-member .description {
+        font-size: 0.75em;
+        line-height: 1.6;
+    }
+
+    /* Optional: slight darken even in default state for better text readability */
+    .team-member img {
+        filter: brightness(0.75);
+    }
+    .team-member.active img {
+        filter: brightness(0.6);
+    }
+}
+
+/* Mobile View - Full width, optimized */
+@media (max-width: 768px) {
+    .team-grid {
+        gap: 30px;
+    }
+    .team-member {
+        width: 92%;
+        height: 500px;        /* Even taller on mobile for easy reading */
+        border-radius: 18px;
+    }
+    .team-member .overlay {
+        transform: translateY(calc(100% - 110px)); /* Shows name + role initially */
+        padding: 40px 30px 30px;
+    }
+    .team-member.active .overlay {
+        transform: translateY(0);
+    }
+    .team-member .name {
+        font-size: 1.2em;
+    }
+    .team-member .role {
+        font-size: 0.95em;
+        margin-bottom: 15px;
+    }
+    .team-member .description {
+        font-size: 0.75em;
+        line-height: 1.6;
+    }
 }
 
 /* Animations */
@@ -159,18 +231,16 @@ footer {
     margin-top:40px;
 }
 
-/* Responsive */
 @media(max-width:600px){
     .container{ margin:20px; padding:20px; }
     h1{ font-size:2em; }
     h2{ font-size:1.5em; }
-    .team-card { width:90%; }
 }
 </style>
 </head>
 <body>
-
 <div class="container">
+    <!-- Your existing content above remains the same -->
     <h1>What is BloodBond?</h1>
     <p>BloodBond is a digital blood donation platform designed to connect people in need of blood with verified donors quickly, safely, and responsibly.</p>
     <p>Our mission is to make blood donation simple, trusted, and accessible for everyone--whether in emergency situations or planned medical needs. BloodBond enables users to search for nearby donors based on blood group and location, send blood requests, and communicate securely once a donor agrees to help.</p>
@@ -183,56 +253,52 @@ footer {
     </ul>
 
     <h2>Who Made BloodBond?</h2>
-    <p>BloodBond is developed by <a href="https://www.facebook.com/teamOrbiq" target="_blank">Team Orbiq</a>, a global Education and Research Centre dedicated to leveraging technology for social good. Team Orbiq focuses on creating innovative solutions that empower communities worldwide.</p>
-
+<p>BloodBond is developed by 
+        <a href="https://www.facebook.com/teamOrbiq" target="_blank" style="color: #1B211A ; font-weight: 600; text-decoration: none;">
+            Team Orbiq
+        </a>, 
+        a global Education and Research Centre dedicated to leveraging technology for social good. Team Orbiq focuses on creating innovative solutions that empower communities worldwide.
+    </p>
     <h2>Our Team & Contributions</h2>
     <div class="team-grid">
-        <div class="team-card" onclick="toggleDetails(this)">
+        <!-- Khalid Likhon -->
+        <div class="team-member" onclick="this.classList.toggle('active')">
             <img src="https://hkteqpspixaklkcjtuqj.supabase.co/storage/v1/object/public/ads'images/BloodBond%20Team/liO's_photo.jpg" alt="Khalid Likhon">
-            <div class="name-bar">
-                <div class="top-row">
-                    <div class="name-text">Khalid Likhon</div>
-                    <div class="icon">&#9660;</div>
+            <div class="overlay">
+                <div class="name">Khalid Likhon</div>
+                <div class="role">Head of Research & Development</div>
+                <div class="description">
+                    He is the visionary leader behind BloodBond, guiding the platform from concept to full execution. Personally led concept design, research planning, system architecture, and full-stack development. Supported by his team, coordinated efforts and personally handled critical tasks to deliver a reliable, user-friendly, highly responsive platform.
                 </div>
-                <hr>
-            </div>
-            <div class="details">
-                <strong>Head of Research & Development</strong>
-                <p>He is the visionary leader behind BloodBond, guiding the platform from concept to full execution. Personally led concept design, research planning, system architecture, and full-stack development. Supported by his team, coordinated efforts and personally handled critical tasks to deliver a reliable, user-friendly, highly responsive platform.</p>
             </div>
         </div>
 
-        <div class="team-card" onclick="toggleDetails(this)">
+        <!-- Hadi Uz Zaman -->
+        <div class="team-member" onclick="this.classList.toggle('active')">
             <img src="https://hkteqpspixaklkcjtuqj.supabase.co/storage/v1/object/public/ads'images/BloodBond%20Team/hadi's_photo.jpg" alt="Hadi Uz Zaman">
-            <div class="name-bar">
-                <div class="top-row">
-                    <div class="name-text">Hadi Uz Zaman</div>
-                    <div class="icon">&#9660;</div>
+            <div class="overlay">
+                <div class="name">Hadi Uz Zaman</div>
+                <div class="role">Asst. Frontend Developer</div>
+                <div class="description">
+                    Provided full support in frontend development, assisting in implementing the app's interface and interactive elements. Helped translate design concepts into functional features while ensuring smooth performance and responsiveness under guidance of the lead developer.
                 </div>
-                <hr>
-            </div>
-            <div class="details">
-                <strong>Ass. Frontend Developer</strong>
-                <p>Provided full support in frontend development, assisting in implementing the app's interface and interactive elements. Helped translate design concepts into functional features while ensuring smooth performance and responsiveness under guidance of the lead developer.</p>
             </div>
         </div>
 
-        <div class="team-card" onclick="toggleDetails(this)">
+        <!-- Muntasir Fahim -->
+        <div class="team-member" onclick="this.classList.toggle('active')">
             <img src="https://hkteqpspixaklkcjtuqj.supabase.co/storage/v1/object/public/ads'images/BloodBond%20Team/fahim's_photo.jpg" alt="Muntasir Fahim">
-            <div class="name-bar">
-                <div class="top-row">
-                    <div class="name-text">Muntasir Fahim</div>
-                    <div class="icon">&#9660;</div>
+            <div class="overlay">
+                <div class="name">Muntasir Fahim</div>
+                <div class="role">UI/UX Designer</div>
+                <div class="description">
+                    Responsible for designing the app's user experience, creating an intuitive, visually appealing, and engaging interface. Ensures the platform is easy to navigate and enjoyable for users while maintaining consistency with BloodBond's branding and accessibility standards.
                 </div>
-                <hr>
-            </div>
-            <div class="details">
-                <strong>UI/UX Designer</strong>
-                <p>Responsible for designing the app's user experience, creating an intuitive, visually appealing, and engaging interface. Ensures the platform is easy to navigate and enjoyable for users while maintaining consistency with BloodBond's branding and accessibility standards.</p>
             </div>
         </div>
     </div>
 
+    <!-- Rest of your content (How Users Benefit, Disclaimer, Vision, Footer) remains unchanged -->
     <h2>How Users Benefit</h2>
     <ul>
         <li>Quickly find verified blood donors in their area based on blood group and location.</li>
@@ -241,36 +307,25 @@ footer {
         <li>Rate donors, check donor histories, and access guidance for safe blood donation.</li>
         <li>Receive medical support and nearby hospital recommendations via AI-based assistance.</li>
     </ul>
-
     <h2>Disclaimer</h2>
     <p>BloodBond does not sell blood, does not act as a medical service provider, and does not replace hospitals or professional healthcare. We serve as a technology platform that helps people connect at the right time, in the right place.</p>
-
     <h2>Vision</h2>
     <p>Our vision is to build a global blood donation network where one bond, one decision, and one act of kindness can save a life.</p>
-
     <footer>
-        &copy; 2025 <a href="https://www.facebook.com/teamOrbiq" target="_blank">Team Orbiq</a>. All Rights Reserved.
+     &copy; 2025 <a href="https://www.facebook.com/teamOrbiq" target="_blank" style="color: #57595B; font-weight: 600; text-decoration: none;">Team Orbiq</a>. All Rights Reserved.
     </footer>
 </div>
 
 <script>
-function toggleDetails(card) {
-    const details = card.querySelector('.details');
-    const allCards = document.querySelectorAll('.team-card');
-    allCards.forEach(c => {
-        if(c!==card){
-            c.classList.remove('expanded');
-            c.querySelector('.details').style.display='none';
-        }
+// Close other cards when one is opened on mobile (accordion style)
+document.querySelector('.team-grid').addEventListener('click', function(e) {
+    if (window.innerWidth > 768) return;
+    const clickedMember = e.target.closest('.team-member');
+    if (!clickedMember) return;
+    document.querySelectorAll('.team-member').forEach(m => {
+        if (m !== clickedMember) m.classList.remove('active');
     });
-    const isVisible = details.style.display==='block';
-    details.style.display = isVisible ? 'none' : 'block';
-    card.classList.toggle('expanded', !isVisible);
-    if(!isVisible){
-        details.scrollIntoView({behavior:"smooth", block:"start"});
-    }
-}
+});
 </script>
-
 </body>
 </html>
