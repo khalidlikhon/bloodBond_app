@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bachelor Hub - Connect and collaborate with like-minded individuals">
+    <title>Bachelor Hub - Community Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">BH</h2>
+            <button class="close-btn" onclick="closeNav()">&times;</button>
+        </div>
+        <ul class="menu-items">
+            <li class="menu-item" onclick="showCommunityOptions()">
+                <i class="fas fa-users"></i> Communities
+                <ul id="communitySubmenu" class="submenu">
+                    <li><button class="submenu-item" onclick="showForm('create')"><i class="fas fa-plus"></i> Create Community</button></li>
+                    <li><button class="submenu-item" onclick="showForm('join')"><i class="fas fa-sign-in-alt"></i> Join Community</button></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <header class="main-header">
+            <button class="menu-btn" onclick="openNav()"><i class="fas fa-bars"></i></button>
+            <h1 class="brand-title">Bachelor Hub</h1>
+            <div class="user-controls" id="userControls"></div>
+        </header>
+
+        <!-- Dynamic Content Container -->
+        <div class="content-container">
+            <!-- Forms Section -->
+            <section id="formsSection" class="card">
+                <!-- Create Community Form -->
+                <div id="createForm" class="form-container hidden">
+                    <h2 class="form-title"><i class="fas fa-plus-circle"></i> Create New Community</h2>
+                    <div class="form-group">
+                        <label for="adminEmail">Admin Email</label>
+                        <input type="email" id="adminEmail" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="communityName">Community Name</label>
+                        <input type="text" id="communityName" placeholder="Awesome Community" minlength="3" required>
+                    </div>
+                    <button class="btn-primary" onclick="initiateCommunityCreation()">
+                        <i class="fas fa-key"></i> Generate License Key
+                    </button>
+                    <div id="licenseVerification" class="hidden">
+                        <div class="form-group">
+                            <label for="licenseInput">Verification Key</label>
+                            <input type="text" id="licenseInput" placeholder="Enter received license key" required>
+                        </div>
+                        <button class="btn-success" onclick="verifyLicenseKey()">
+                            <i class="fas fa-check-circle"></i> Verify & Create
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Join Community Form -->
+                <div id="joinForm" class="form-container hidden">
+                    <h2 class="form-title"><i class="fas fa-sign-in-alt"></i> Join Community</h2>
+                    <div class="form-group">
+                        <label for="userEmail">Your Email</label>
+                        <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="communityToJoin">Join Key</label>
+                        <input type="text" id="communityToJoin" placeholder="Community Join Key" required>
+                    </div>
+                    <button class="btn-primary" onclick="initiateJoinProcess()">
+                        <i class="fas fa-shield-alt"></i> Get OTP
+                    </button>
+                    <div id="otpVerification" class="hidden">
+                        <div class="form-group">
+                            <label for="otpInput">Verification Code</label>
+                            <input type="text" id="otpInput" placeholder="Enter OTP" required>
+                        </div>
+                        <button class="btn-success" onclick="verifyOTP()">
+                            <i class="fas fa-check-circle"></i> Confirm & Join
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status Notification -->
+            <div id="notification" class="notification hidden"></div>
+
+            <!-- Newsfeed Section -->
+            <section id="newsfeed" class="hidden">
+                <div class="newsfeed-header">
+                    <h2><i class="fas fa-newspaper"></i> Community Feed</h2>
+                    <button class="btn-icon" onclick="refreshNewsfeed()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+                
+                <div id="postsContainer" class="posts-container"></div>
+                
+                <div class="post-creator card">
+                    <textarea id="newPost" placeholder="Share your thoughts..." rows="3"></textarea>
+                    <button class="btn-primary" onclick="createPost()">
+                        <i class="fas fa-paper-plane"></i> Post
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
